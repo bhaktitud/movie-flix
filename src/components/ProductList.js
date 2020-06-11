@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { productPerPage, getProducts, setFetchStatus } from '../store/actions';
-import { Card } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
+import styled from 'styled-components';
+import dateToRelativeFormat from '../helper/dateFormatter'
 
 
 export default function ProductList () {
@@ -36,13 +38,44 @@ export default function ProductList () {
     }
 
     return (
-        <div>
-            {productsPerPage.map(product => (
-                <Card key={product.id}>
-                    <p>{product.face}</p>
+        <ListContainer>
+            <CardContainer>
+                {productsPerPage.map(product => (
+                    <Card 
+                        className='d-flex flex-column bg-light mx-3 my-3 shadow hoverable border rounded align-items-center justify-content-around' 
+                        key={product.id} 
+                        style={{ width: '20rem', height: '10rem' }}
+                    >
+                        <div>
+                            <p className='pt-3' style={{fontSize: `${product.size}px`}}>{product.face}</p>
+                        </div>
+                        <div className='d-flex flex-column mx-2' style={{marginBottom: '5%', alignSelf: 'flex-start'}}>
+                            <small>Product ID: <strong>{product.id}</strong></small>
+                            <small>Release Date: <strong>{dateToRelativeFormat(product.date)}</strong></small>
+                            <small>Size: <strong>{product.size}px</strong></small>
+                        </div>
                 </Card>
-            ))}
+                ))}
+            </CardContainer>
             {fetchStatus && 'Loading...'}
-        </div>
+        </ListContainer>
     )
 }
+
+const ListContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 60vw;
+    flex-wrap: wrap
+`
+
+const CardContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    max-width: 60vw;
+    flex-wrap: wrap
+`

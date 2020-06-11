@@ -31,4 +31,5 @@ const ContentContainer = styled.div`
 
 const MainContent = styled.div`
     margin-top: 5rem;
+    margin-bottom: 5rem
 `

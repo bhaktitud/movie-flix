@@ -6,7 +6,7 @@ export const SET_TOTAL_PAGES = 'SET_TOTAL_PAGES';
 export const SET_FETCH_STATUS = 'SET_FETCH_STATUS';
 
 const baseURL = `http://localhost:3000/`;
-const itemsPerPage = 15;
+const itemsPerPage = 20;
 
 export const getProducts = () => {
     return (dispatch) => {
