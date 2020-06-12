@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dropdown } from 'react-bootstrap';
-import { setSortType } from '../store/actions';
+import { setSortType, setFetchStatus } from '../store/actions';
 import { useDispatch } from 'react-redux';
 
 export default function Toolbar() {
@@ -9,6 +9,7 @@ export default function Toolbar() {
 
     const handleSortByType = (type) => {
         dispatch(setSortType(type))
+        dispatch(setFetchStatus(true))
     }
 
     return (

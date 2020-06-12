@@ -6,8 +6,9 @@ export default function Skeleton() {
     return (
         <div className='d-flex flex-row flex-wrap align-items-center justify-content-center'>
             {
-                totalSkel.map(value => (
+                totalSkel.map((value, index) => (
                     <div 
+                            key ={index}
                             className='d-flex bg-white flex-column mx-3 my-3 shadow rounded align-items-center justify-content-around' 
                             style={{ width: '20rem', height: '20rem' }}
                         >

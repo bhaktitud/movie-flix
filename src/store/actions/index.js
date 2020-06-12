@@ -6,6 +6,8 @@ export const SET_TOTAL_PAGES = 'SET_TOTAL_PAGES';
 export const SET_FETCH_STATUS = 'SET_FETCH_STATUS';
 export const SET_ADS = 'SET_ADS';
 export const SET_SORT_TYPE = 'SET_SORT_TYPE';
+export const SET_SORTED_PRODUCTS = 'SET_SORTED_PRODUCTS';
+
 
 const baseURL = `http://localhost:3000/`;
 const itemsPerPage = 10;
@@ -16,7 +18,6 @@ export const getProducts = () => {
             .get(`${baseURL}products`)
             .then(({ data }) => {
                 dispatch(setProducts(data))
-                console.log(data)
                 const totalPages = Math.ceil(data.length / itemsPerPage)
                 dispatch(setTotalPages(totalPages))
             }).catch((err) => {
@@ -71,7 +72,6 @@ export const getAds = (randomAds) => {
         axios
             .get(`${baseURL}ads/?r=${randomAds}`)
             .then(({ data }) => {
-                console.log(data)
                 dispatch(setAds(data))
             }).catch((err) => {
                 console.log(err)
@@ -93,3 +93,24 @@ export const setSortType = (type) => {
     }
 }
 
+//sort by back-end
+
+export const getSortedProducts = (type) => {
+    return(dispatch) => {
+        axios
+            .get(`${baseURL}products?_sort=${type}`)
+            .then(({ data }) => {
+                dispatch(setSortedProducts(data))
+                dispatch(setFetchStatus(false))
+            }).catch((err) => {
+                console.log(err)
+            });
+    }
+}
+
+export const setSortedProducts = (sorted) => {
+    return {
+        type: SET_SORTED_PRODUCTS,
+        payload: sorted
+    }
+}

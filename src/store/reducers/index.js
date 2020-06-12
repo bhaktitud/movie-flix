@@ -5,15 +5,17 @@ import {
     SET_FETCH_STATUS,
     SET_ADS,
     SET_SORT_TYPE,
+    SET_SORTED_PRODUCTS,
 } from '../actions';
 
 const initialState = {
     products: [],
     productsPerPage : [],
+    sortedProducts: [],
     totalPages: 0,
     fetchStatus: false,
     ads: '',
-    sortByType: ''
+    sortByType: '',
 }
 
 export const reducers = (state = initialState, action) => {
@@ -48,6 +50,11 @@ export const reducers = (state = initialState, action) => {
             return {
                 ...state,
                 sortByType: payload
+            }
+        case SET_SORTED_PRODUCTS:
+            return {
+                ...state,
+                sortedProducts: payload
             }
         default:
             return state;

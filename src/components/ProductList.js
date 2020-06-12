@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { productPerPage, getProducts, setFetchStatus } from '../store/actions';
+import { productPerPage, getProducts, setFetchStatus, getSortedProducts } from '../store/actions';
 import styled from 'styled-components';
-import Sort from '../helper/Sort';
 import Product from './ProductCard';
 import Skeleton from './Skeleton';
 
@@ -13,6 +12,7 @@ export default function ProductList () {
     const productsPerPage = useSelector(state => state.productsPerPage)
     const fetchStatus = useSelector(state => state.fetchStatus)
     const sortByType = useSelector(state => state.sortByType)
+    const sortedProducts = useSelector(state => state.sortedProducts)
     let [currentPage, setCurrentPage] = useState(1)
     
     useEffect(() => {
@@ -33,29 +33,39 @@ export default function ProductList () {
 
     useEffect(() => {
         if(!sortByType) return;
-        Sort(productsPerPage, sortByType)
-    }, [sortByType, productsPerPage])
+        dispatch(getSortedProducts(sortByType))
+        setCurrentPage(totalPages)
+    }, [sortByType, dispatch, totalPages])
 
     function handleScroll() {
         if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight || fetchStatus) return;
         dispatch(setFetchStatus(true))
     }
 
-    function fetchMoreItems(){
+    function fetchMoreItems() {
         dispatch(productPerPage(currentPage))
     }
 
     return (
         <ListContainer>
             <CardContainer>
-                {productsPerPage.map(product => (
-                    <Product product={product} key={product.id} />
-                ))}
+                {
+                    sortByType === '' ? 
+                        productsPerPage.map(product => (
+                            <Product product={product} key={product.id} />
+                        ))
+                        : sortedProducts.map(product => (
+                            <Product product={product} key={product.id} />
+                        ))
+                };
             </CardContainer>
-            {/* {fetchStatus && <lottie-player src="https://assets6.lottiefiles.com/private_files/lf30_IVaLPO.json"  background="transparent"  speed="1"  style={{width: '300px', height: '300px'}}  loop autoplay></lottie-player>} */}
-            {fetchStatus && <Skeleton />}
+            {
+                fetchStatus && <Skeleton />
+            }
             <br />
-            {currentPage > totalPages && '~ end of catalogue ~'}
+            {
+                currentPage > totalPages && '~ end of catalogue ~'
+            }
         </ListContainer>
     )
 }

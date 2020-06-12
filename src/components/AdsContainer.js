@@ -13,7 +13,7 @@ export default function AdsContainer() {
     useEffect(() => {
         if(productsPerPage % 20 === 0) return;
         dispatch(setAds(randomAdsIndex()))
-    }, [productsPerPage])
+    }, [productsPerPage, dispatch])
 
     return (
         <div className='w-100 h-25 d-flex flex-column justify-content-center align-items-center' >
