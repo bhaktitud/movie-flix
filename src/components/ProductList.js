@@ -4,6 +4,7 @@ import { productPerPage, getProducts, setFetchStatus } from '../store/actions';
 import styled from 'styled-components';
 import Sort from '../helper/Sort';
 import Product from './ProductCard';
+import Skeleton from './Skeleton';
 
 
 export default function ProductList () {
@@ -51,7 +52,8 @@ export default function ProductList () {
                     <Product product={product} key={product.id} />
                 ))}
             </CardContainer>
-            {fetchStatus && <lottie-player src="https://assets6.lottiefiles.com/private_files/lf30_IVaLPO.json"  background="transparent"  speed="1"  style={{width: '300px', height: '300px'}}  loop autoplay></lottie-player>}
+            {/* {fetchStatus && <lottie-player src="https://assets6.lottiefiles.com/private_files/lf30_IVaLPO.json"  background="transparent"  speed="1"  style={{width: '300px', height: '300px'}}  loop autoplay></lottie-player>} */}
+            {fetchStatus && <Skeleton />}
             <br />
             {currentPage > totalPages && '~ end of catalogue ~'}
         </ListContainer>
