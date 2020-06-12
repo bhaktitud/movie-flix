@@ -1,7 +1,16 @@
-## `Known Bug`
+### `Known Bug`
   1. Sort feature will not be automatically reload the product page, user have to scroll down and the next result + previous result will be sorted out.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+### `How To Run?`
+
+Before you run this client project, for the sake of convenience please make sure to run server project first or else it will get you a port conflict. After the server is up and running, then you can run this client.
+
+Project setup:
+  1. clone this project
+  2. run yarn install (to install all dependencies in the project)
+  3. run yarn start (to run the project as instructed below)
 
 ## Available Scripts
 
