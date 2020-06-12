@@ -12,7 +12,7 @@ export default function Product({ product }) {
                 className='d-flex bg-white flex-column mx-3 my-3 shadow border rounded align-items-center justify-content-around' 
                 style={{ width: '20rem', height: '20rem' }}
             >
-                <div className='text-wrap w-100 h-100 d-flex flex-column justify-content-center align-items-center'>
+                <div className='flex-wrap w-100 h-100 d-flex flex-column justify-content-center align-items-center'>
                     <p className='pt-3' style={{fontSize: `${product.size}px`}}>{product.face}</p>
                 </div>
                 <Description className='border-top d-flex flex-row mx-2 pt-2 pb-2 justify-content-between align-items-between w-100 h-50'>

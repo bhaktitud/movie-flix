@@ -59,7 +59,6 @@ export const productPerPage = (pageNumber) => {
     }
 }
 
-
 export const setProductsPaginate = (data) => {
     return {
         type: SET_PRODUCTS_PAGINATE,

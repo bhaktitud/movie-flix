@@ -8,10 +8,10 @@ export default function Skeleton() {
             {
                 totalSkel.map(value => (
                     <div 
-                            className='d-flex bg-white flex-column mx-3 my-3 shadow border rounded align-items-center justify-content-around' 
+                            className='d-flex bg-white flex-column mx-3 my-3 shadow rounded align-items-center justify-content-around' 
                             style={{ width: '20rem', height: '20rem' }}
                         >
-                            <div className='text-wrap w-100 h-100 d-flex flex-column justify-content-center align-items-center'>
+                            <div className='flex-wrap w-100 h-100 bg-light d-flex flex-column justify-content-center align-items-center'>
                                 <div className='w-75 h-50'>
                                     <SSkeletonLine />
                                 </div>
@@ -23,7 +23,7 @@ export default function Skeleton() {
                                     </div>
                                 </div>
                                 <div className='w-75 h-100 pr-2 d-flex flex-column align-items-center mr-1 justify-content-center'>
-                                    <div className='w-75 h-50'>
+                                    <div className='w-75 h-75'>
                                         <SSkeletonLine />
                                     </div>
                                 </div>
@@ -45,14 +45,14 @@ const SSkeletonPulse = styled.div`
   display: inline-block;
   height: 100%;
   width: 100%;
-  background: linear-gradient(-90deg, #F0F0F0 0%, #F8F8F8 50%, #F0F0F0 100%);
+  background: linear-gradient(-90deg, #F0F0F0 5%, #F8F8F8 20%, #F0F0F0 80%);
   background-size: 85% 85%;
   animation: pulse 0.5s ease-in-out infinite;
   @keyframes pulse {
     0% {
       background-position: 0% 0%;
     }
-    100% {
+    80% {
       background-position: -135% 0%;
     }
   }
