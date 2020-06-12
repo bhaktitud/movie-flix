@@ -1,3 +1,6 @@
+## `Known Bug`
+  1. Sort feature will not be automatically reload the product page, user have to scroll down and the next result + previous result will be sorted out.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
