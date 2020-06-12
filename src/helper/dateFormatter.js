@@ -4,9 +4,7 @@ export default function dateToRelativeFormat(str) {
       m = s / 60,
       h = m / 60,
       d = h / 24,
-      w = d / 7,
-      y = d / 365.242199,
-      M = y * 12;
+      w = d / 7;
     
     function approx(num) {
       return num < 5 ? 'a few' : Math.round(num);

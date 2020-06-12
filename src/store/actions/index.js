@@ -4,9 +4,11 @@ export const SET_PRODUCTS = 'SET_PRODUCTS';
 export const SET_PRODUCTS_PAGINATE = 'SET_PRODUCTS_PAGINATE';
 export const SET_TOTAL_PAGES = 'SET_TOTAL_PAGES';
 export const SET_FETCH_STATUS = 'SET_FETCH_STATUS';
+export const SET_ADS = 'SET_ADS';
+export const SET_SORT_TYPE = 'SET_SORT_TYPE';
 
 const baseURL = `http://localhost:3000/`;
-const itemsPerPage = 20;
+const itemsPerPage = 10;
 
 export const getProducts = () => {
     return (dispatch) => {
@@ -64,3 +66,31 @@ export const setProductsPaginate = (data) => {
         payload: data
     }
 }
+
+export const getAds = (randomAds) => {
+    return(dispatch) => {
+        axios
+            .get(`${baseURL}ads/?r=${randomAds}`)
+            .then(({ data }) => {
+                console.log(data)
+                dispatch(setAds(data))
+            }).catch((err) => {
+                console.log(err)
+            });
+    }
+}
+
+export const setAds = (adsNumber) => {
+    return {
+        type: SET_ADS,
+        payload: `${baseURL}ads/?r=${adsNumber}`
+    }
+}
+
+export const setSortType = (type) => {
+    return {
+        type: SET_SORT_TYPE,
+        payload: type
+    }
+}
+

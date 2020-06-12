@@ -3,13 +3,17 @@ import {
     SET_PRODUCTS_PAGINATE,
     SET_TOTAL_PAGES,
     SET_FETCH_STATUS,
+    SET_ADS,
+    SET_SORT_TYPE,
 } from '../actions';
 
 const initialState = {
     products: [],
     productsPerPage : [],
     totalPages: 0,
-    fetchStatus: false
+    fetchStatus: false,
+    ads: '',
+    sortByType: ''
 }
 
 export const reducers = (state = initialState, action) => {
@@ -34,6 +38,16 @@ export const reducers = (state = initialState, action) => {
             return {
                 ...state,
                 fetchStatus: payload
+            }
+        case SET_ADS:
+            return {
+                ...state,
+                ads: payload
+            }
+        case SET_SORT_TYPE:
+            return {
+                ...state,
+                sortByType: payload
             }
         default:
             return state;

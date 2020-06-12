@@ -3,25 +3,8 @@ import React from 'react';
 
 export default function Footer () {
     return (
-        <nav className="navbar has-shadow is-fixed-bottom" role="navigation" aria-label="main navigation">
-            <div className="navbar-brand">
-                <a className="navbar-item" href="https://bulma.io">
-                <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" alt='logo' />
-                </a>
-            </div>
-
-            <div className="navbar-end">
-                <div className="navbar-item">
-                    <div className="buttons">
-                    <button className="button is-primary" href='#'>
-                        <strong>Sign up</strong>
-                    </button>
-                    <button className="button is-light" href="#">
-                        Log in
-                    </button>
-                    </div>
-                </div>
-            </div>
-        </nav>
+        <>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0099ff" fillOpacity="1" d="M0,128L80,106.7C160,85,320,43,480,48C640,53,800,107,960,117.3C1120,128,1280,96,1360,80L1440,64L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>
+        </>
     )
 }

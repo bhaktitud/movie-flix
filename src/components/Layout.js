@@ -1,18 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
-import NavigationBar from './Navbar'
-
+import NavigationBar from './Navbar';
+import Footer from './Footer'
 
 export default function Layout (props) {
 
     const { children } = props
     return (
         <Wrapper>
-            <ContentContainer>
+            <ContentContainer className='bg-light'>
                 <NavigationBar />
                 <MainContent>
                     <main>{children}</main>
                 </MainContent>
+                <Footer />
             </ContentContainer>
         </Wrapper>
     )
