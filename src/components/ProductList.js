@@ -18,6 +18,7 @@ export default function ProductList () {
     useEffect(() => {
         dispatch(getProducts())
         dispatch(productPerPage(currentPage))
+        dispatch(setFetchStatus(true))
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
         // eslint-disable-next-line
