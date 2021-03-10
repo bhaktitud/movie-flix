@@ -5,8 +5,9 @@ import {
   Route,
   Switch
 } from 'react-router-dom';
-import Home from './components/Home'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import Home from './components/Home';
+import 'antd/dist/antd.css';
+import MovieDetail from './components/MovieDetail';
 
 function App() {
   return (
@@ -14,6 +15,9 @@ function App() {
       <Switch>
         <Route path='/' exact>
           <Home />
+        </Route>
+        <Route path='/detail/movie/:id' exact>
+          <MovieDetail />
         </Route>
       </Switch>
     </Router>

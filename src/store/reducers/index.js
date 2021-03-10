@@ -1,60 +1,35 @@
-import {
-    SET_PRODUCTS,
-    SET_PRODUCTS_PAGINATE,
-    SET_TOTAL_PAGES,
-    SET_FETCH_STATUS,
-    SET_ADS,
-    SET_SORT_TYPE,
-    SET_SORTED_PRODUCTS,
-} from '../actions';
+
+import { SET_FETCH_LOADING, SET_MOVIE_LIST, SET_SIMILAR_MOVIE, SET_UPCOMING_MOVIE } from '../types';
 
 const initialState = {
-    products: [],
-    productsPerPage : [],
-    sortedProducts: [],
-    totalPages: 0,
-    fetchStatus: false,
-    ads: '',
-    sortByType: '',
+    movies: [],
+    similarMovies: [],
+    upcomingMovies: [],
+    loadFetching: false
 }
 
 export const reducers = (state = initialState, action) => {
     const { payload, type } = action
     switch (type) {
-        case SET_PRODUCTS:
+        case SET_FETCH_LOADING:
             return {
                 ...state,
-                products: payload
+                loadFetching: payload
             }
-        case SET_PRODUCTS_PAGINATE:
+        case SET_MOVIE_LIST:
             return {
                 ...state,
-                productsPerPage: [...state.productsPerPage, ...payload]
+                movies: [...state.movies, ...payload]
             }
-        case SET_TOTAL_PAGES:
+        case SET_SIMILAR_MOVIE:
             return {
                 ...state,
-                totalPages: payload
+                similarMovies: payload
             }
-        case SET_FETCH_STATUS:
+        case SET_UPCOMING_MOVIE:
             return {
                 ...state,
-                fetchStatus: payload
-            }
-        case SET_ADS:
-            return {
-                ...state,
-                ads: payload
-            }
-        case SET_SORT_TYPE:
-            return {
-                ...state,
-                sortByType: payload
-            }
-        case SET_SORTED_PRODUCTS:
-            return {
-                ...state,
-                sortedProducts: payload
+                upcomingMovies: payload
             }
         default:
             return state;

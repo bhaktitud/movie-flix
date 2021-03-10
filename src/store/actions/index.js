@@ -1,116 +1,91 @@
 import axios from 'axios';
-
-export const SET_PRODUCTS = 'SET_PRODUCTS';
-export const SET_PRODUCTS_PAGINATE = 'SET_PRODUCTS_PAGINATE';
-export const SET_TOTAL_PAGES = 'SET_TOTAL_PAGES';
-export const SET_FETCH_STATUS = 'SET_FETCH_STATUS';
-export const SET_ADS = 'SET_ADS';
-export const SET_SORT_TYPE = 'SET_SORT_TYPE';
-export const SET_SORTED_PRODUCTS = 'SET_SORTED_PRODUCTS';
+import { SET_FETCH_LOADING, SET_MOVIE_LIST,SET_SIMILAR_MOVIE, SET_UPCOMING_MOVIE } from '../types';
 
 
-const baseURL = `http://localhost:3000/`;
-const itemsPerPage = 10;
+const baseURL = `https://api.themoviedb.org/3/movie`;
+const API_KEY = 'dc0e8233ed2baf734a8e69292cded63e'; 
+// const API_KEY = process.env.REACT_APP_API_KEY
 
-export const getProducts = () => {
+export const setLoadFetching = (isLoad) => {
+    return {
+        type: SET_FETCH_LOADING,
+        payload: isLoad
+    }
+}
+
+export const setMovieList = (movies) => {
+    return {
+        type: SET_MOVIE_LIST,
+        payload: movies
+    }
+}
+
+export const fetchMovieList = (pageIndex) => {
     return (dispatch) => {
-        axios
-            .get(`${baseURL}products`)
-            .then(({ data }) => {
-                dispatch(setProducts(data))
-                const totalPages = Math.ceil(data.length / itemsPerPage)
-                dispatch(setTotalPages(totalPages))
-            }).catch((err) => {
-                console.log(err)
-            });
+        dispatch(setLoadFetching(true))
+        axios({
+            method: 'GET',
+            url: `${baseURL}/now_playing?api_key=${API_KEY}&language=en-US&page=${pageIndex}`
+        })
+        .then(({ data }) => {
+            const { results } = data
+            dispatch(setMovieList(results))
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+        .finally(_ => {
+            dispatch(setLoadFetching(false))
+        })
     }
 }
 
-export const setProducts = (data) => {
+export const setSimilarMovie = (movies) => {
     return {
-        type: SET_PRODUCTS,
-        payload: data
+        type: SET_SIMILAR_MOVIE,
+        payload: movies
     }
 }
 
-export const setTotalPages = (totalPages) => {
-    return {
-        type: SET_TOTAL_PAGES,
-        payload: totalPages
-    }
-}
-
-export const setFetchStatus = (status) => {
-    return {
-        type: SET_FETCH_STATUS,
-        payload: status
-    }
-}
-
-export const productPerPage = (pageNumber) => {
+export const fetchSimilarMovie = (movieId) => {
     return (dispatch) => {
-        axios
-            .get(`${baseURL}products?_page=${pageNumber}&_limit=${itemsPerPage}`)
-            .then(({ data }) => {
-                dispatch(setProductsPaginate(data))
-                dispatch(setFetchStatus(false))
-            }).catch((err) => {
-                console.log(err)
-            });
+        dispatch(setLoadFetching(true))
+        axios({
+            method: 'GET',
+            url: `${baseURL}/${movieId}/similar?api_key=${API_KEY}&language=en-US&page=1`
+        })
+        .then(({ data }) => {
+            const { results } = data
+            dispatch(setSimilarMovie(results))
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+        .finally(_ => {
+            dispatch(setLoadFetching(false))
+        })
     }
 }
 
-export const setProductsPaginate = (data) => {
+export const setUpcomingMovie = (movies) => {
     return {
-        type: SET_PRODUCTS_PAGINATE,
-        payload: data
+        type: SET_UPCOMING_MOVIE,
+        payload: movies
     }
 }
 
-export const getAds = (randomAds) => {
-    return(dispatch) => {
-        axios
-            .get(`${baseURL}ads/?r=${randomAds}`)
-            .then(({ data }) => {
-                dispatch(setAds(data))
-            }).catch((err) => {
-                console.log(err)
-            });
-    }
-}
-
-export const setAds = (adsNumber) => {
-    return {
-        type: SET_ADS,
-        payload: `${baseURL}ads/?r=${adsNumber}`
-    }
-}
-
-export const setSortType = (type) => {
-    return {
-        type: SET_SORT_TYPE,
-        payload: type
-    }
-}
-
-//sort by back-end
-
-export const getSortedProducts = (type) => {
-    return(dispatch) => {
-        axios
-            .get(`${baseURL}products?_sort=${type}`)
-            .then(({ data }) => {
-                dispatch(setSortedProducts(data))
-                dispatch(setFetchStatus(false))
-            }).catch((err) => {
-                console.log(err)
-            });
-    }
-}
-
-export const setSortedProducts = (sorted) => {
-    return {
-        type: SET_SORTED_PRODUCTS,
-        payload: sorted
+export const fetchUpcomingMovie = () => {
+    return (dispatch) => {
+        axios({
+            method: 'GET',
+            url: `${baseURL}/upcoming?api_key=${API_KEY}&language=en-US&page=1`
+        })
+        .then(({ data }) => {
+            const { results } = data
+            dispatch(setUpcomingMovie(results))
+        })
+        .catch((err) => {
+            console.log(err)
+        })
     }
 }
