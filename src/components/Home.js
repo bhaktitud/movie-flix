@@ -1,4 +1,4 @@
-import { Button, List, Card, Row, Col, Typography, Input } from 'antd'
+import { Button, List, Row, Col, Input } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMovieList, fetchUpcomingMovie } from '../store/actions';

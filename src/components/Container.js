@@ -1,9 +1,9 @@
 import React from 'react'
-import { Button, Layout, Menu, Typography } from 'antd'
+import { Button, Layout } from 'antd'
 import { useHistory } from 'react-router-dom';
 
 
-const { Header, Content, Footer } = Layout;
+const { Header, Content } = Layout;
 
 const Container = ({children}) => {
     

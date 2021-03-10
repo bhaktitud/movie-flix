@@ -1,4 +1,4 @@
-import { Card, Col, Divider, Image, Row, Statistic } from 'antd';
+import { Card, Col, Image, Row, Statistic } from 'antd';
 import { LikeOutlined, HeartOutlined } from '@ant-design/icons';
 import React from 'react'
 import { useHistory } from 'react-router-dom'
