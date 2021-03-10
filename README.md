@@ -1,3 +1,6 @@
+
+Deployed Site (https://reverent-williams-57dbbe.netlify.app)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ### `How To Run?`
@@ -6,8 +9,8 @@ Before you run this client project, for the sake of convenience please make sure
 
 Project setup:
   1. clone this project
-  2. run yarn install (to install all dependencies in the project)
-  3. run yarn start (to run the project as instructed below)
+  2. run npm install (to install all dependencies in the project)
+  3. run npm start (to run the project as instructed below)
 
 ## Available Scripts
 
