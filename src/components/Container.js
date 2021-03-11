@@ -22,7 +22,7 @@ const Container = ({children}) => {
     return (
         <>
             <Layout>
-                <Header style={{position:'absolute', zIndex: 1, width: '100%', backgroundColor: 'rgba(0,0,0,0.7)' }}>
+                <Header style={{position:'absolute', zIndex: 1, width: '100%', backgroundColor: 'rgba(0,0,0,0.05)' }}>
                     <div style={{display: 'flex', justifyContent: 'space-between', alignContent: 'center', alignItems: 'center'}}>
                         <a onClick={() => handleBack()} style={menuStyle}>
                             MovieFlix

@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { fetchSimilarMovie } from '../store/actions';
 import Container from './Container';
-import { Avatar, Col, Descriptions, Divider, Image, List, Row, Statistic, Typography } from 'antd';
+import { Avatar, BackTop, Col, Descriptions, Divider, Image, List, Row, Statistic, Typography } from 'antd';
 import MovieCard from './MovieCard';
 import { LikeOutlined } from '@ant-design/icons';
+import PageNotFound from './PageNotFound';
 
 
 const baseImageURL = 'https://image.tmdb.org/t/p/'
@@ -51,6 +52,17 @@ export default function MovieDetail(props) {
         "w780",
         "original"
     ]
+
+    const upStyle = {
+        height: 40,
+        width: 40,
+        lineHeight: '40px',
+        borderRadius: 4,
+        backgroundColor: '#E50914',
+        color: '#fff',
+        textAlign: 'center',
+        fontSize: 14,
+    };
 
     const labels = (text) => (
         <Typography.Text style={labelStyle}>{text}</Typography.Text>
@@ -148,6 +160,9 @@ export default function MovieDetail(props) {
                                 </List.Item>
                             )}
                         />
+                        <BackTop>
+                            <div style={upStyle}>UP</div>
+                        </BackTop>
                     </Col>
                 </Row>
             </div>

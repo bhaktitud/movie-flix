@@ -1,4 +1,4 @@
-import { Button, List, Row, Col, Input } from 'antd'
+import { Button, List, Row, Col, Input, BackTop } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMovieList, fetchUpcomingMovie } from '../store/actions';
@@ -53,7 +53,18 @@ export default function Home() {
         >
           <Button onClick={() => loadMoreAction()}>load more</Button>
         </div>
-      );
+    );
+
+    const upStyle = {
+        height: 40,
+        width: 40,
+        lineHeight: '40px',
+        borderRadius: 4,
+        backgroundColor: '#E50914',
+        color: '#fff',
+        textAlign: 'center',
+        fontSize: 14,
+    };
 
     return (
         <Container>
@@ -76,7 +87,7 @@ export default function Home() {
                             style={{width: '60vw', marginTop: 20}}
                             placeholder="Find Your Favourite Movie..."
                             allowClear
-                            enterButton="Search"
+                            enterButton={<Button style={{backgroundColor: '#E50914', color: '#FFF'}}>Search</Button>}
                             size="large"
                         />
                     </div>
@@ -97,11 +108,14 @@ export default function Home() {
                             }}
                             dataSource={resourceList}
                             renderItem={item => (
-                            <List.Item>
-                                <MovieCard item={item} />
-                            </List.Item>
+                                <List.Item>
+                                    <MovieCard item={item} />
+                                </List.Item>
                             )}
                         />
+                        <BackTop>
+                            <div style={upStyle}>UP</div>
+                        </BackTop>
                     </div>
                 </Col>
             </Row>
