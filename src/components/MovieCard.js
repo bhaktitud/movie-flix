@@ -1,4 +1,4 @@
-import { Card, Col, Image, Row, Statistic } from 'antd';
+import { Card, Col, Image, Row, Statistic, Typography } from 'antd';
 import { LikeOutlined, HeartOutlined } from '@ant-design/icons';
 import React from 'react'
 import { useHistory } from 'react-router-dom'
@@ -48,7 +48,7 @@ function MovieCard({ item }) {
         <Card
             size={"small"}
             hoverable
-            cover={<Image src={`${baseImageURL}${poster_sizes[6]}${item.poster_path}`} />}
+            cover={<Image preview={false} src={`${baseImageURL}${poster_sizes[6]}${item.poster_path}`} />}
             onClick={() => handleOnDetail(item)}
         >
             <Meta title={item.title} description={descriptionDetail} />

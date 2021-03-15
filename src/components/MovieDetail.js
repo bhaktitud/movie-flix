@@ -91,7 +91,7 @@ export default function MovieDetail(props) {
     return (
         <Container>
             <TrailerModal isShowTrailer={isShowTrailer} setIsShowTrailer={setIsShowTrailer} movieTrailer={trailer} />
-            <div>
+            {/* <div> */}
                 <Row 
                     justify='center'
                     align='bottom'
@@ -161,6 +161,7 @@ export default function MovieDetail(props) {
                 <Divider style={{color: '#f5f5f5'}}>Related Movies</Divider>
                 <Row>
                     <Col>
+                    <div style={{ padding: 24, minHeight: 380 }}>
                         <List
                             loading={loadFetching}
                             grid={{
@@ -179,12 +180,13 @@ export default function MovieDetail(props) {
                                 </List.Item>
                             )}
                         />
+                    </div>
                         <BackTop>
                             <div style={upStyle}>UP</div>
                         </BackTop>
                     </Col>
                 </Row>
-            </div>
+            {/* </div> */}
         </Container>
     )
 }

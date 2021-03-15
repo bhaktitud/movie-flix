@@ -32,7 +32,7 @@ const Container = ({children}) => {
                         </Button>
                     </div>
                 </Header>
-                <Content className="site-layout" style={{ padding: '0', width: '100%', backgroundColor: '#000' }}>
+                <Content className="site-layout" style={{width: '100%', backgroundColor: '#000' }}>
                     {
                         children
                     }

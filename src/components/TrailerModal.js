@@ -14,10 +14,6 @@ function TrailerModal(props) {
         setIsShowTrailer(false)
     }
 
-    useEffect(() => {
-        console.log(movieTrailer)
-    }, [movieTrailer])
-
     const size = {
         width: '100%',
         height: '640'
@@ -32,7 +28,7 @@ function TrailerModal(props) {
     };
 
     return (
-        <Modal title="Movie Trailer" destroyOnClose={true} closable={false} footer={null} width={size.width} visible={isShowTrailer} onOk={handleOk} onCancel={handleCancel}>
+        <Modal title="Movie Trailer" bodyStyle={{padding: 0}} destroyOnClose={true} closable={false} footer={null} width={size.width} visible={isShowTrailer} onOk={handleOk} onCancel={handleCancel}>
             <YouTube videoId={movieTrailer.key} opts={opts} />
         </Modal>
     )
