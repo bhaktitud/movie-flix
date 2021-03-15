@@ -46,6 +46,7 @@ function MovieCard({ item }) {
 
     return (
         <Card
+            size={"small"}
             hoverable
             cover={<Image src={`${baseImageURL}${poster_sizes[6]}${item.poster_path}`} />}
             onClick={() => handleOnDetail(item)}

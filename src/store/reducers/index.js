@@ -1,16 +1,22 @@
 
-import { SET_FETCH_LOADING, SET_MOVIE_LIST, SET_SIMILAR_MOVIE, SET_UPCOMING_MOVIE } from '../types';
+import { SET_FETCH_LOADING, SET_MOVIE_LIST, SET_MOVIE_TRAILER, SET_SIMILAR_MOVIE, SET_UPCOMING_MOVIE } from '../types';
 
 const initialState = {
     movies: [],
     similarMovies: [],
     upcomingMovies: [],
-    loadFetching: false
+    loadFetching: false,
+    movieTrailer: {}
 }
 
 export const reducers = (state = initialState, action) => {
     const { payload, type } = action
     switch (type) {
+        case SET_MOVIE_TRAILER:
+            return {
+                ...state,
+                movieTrailer: payload
+            }
         case SET_FETCH_LOADING:
             return {
                 ...state,

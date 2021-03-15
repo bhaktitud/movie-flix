@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { fetchSimilarMovie } from '../store/actions';
+import { fetchSimilarMovie, getMovieTrailer } from '../store/actions';
 import Container from './Container';
 import { Avatar, BackTop, Col, Descriptions, Divider, Image, List, Row, Statistic, Typography } from 'antd';
 import MovieCard from './MovieCard';
 import { LikeOutlined } from '@ant-design/icons';
 import PageNotFound from './PageNotFound';
+import TrailerModal from './TrailerModal';
 
 
 const baseImageURL = 'https://image.tmdb.org/t/p/'
@@ -16,14 +17,25 @@ export default function MovieDetail(props) {
     const dispatch = useDispatch()
     const location = useLocation();
 
+    const [isShowTrailer, setIsShowTrailer] = useState(false)
+    const [trailer, setTrailer] = useState({})
+
     const similarMovies = useSelector(state => state.similarMovies)
     const loadFetching = useSelector(state => state.loadFetching)
+    const movieTrailer = useSelector(state => state.movieTrailer)
 
     const { detail } = location.state
 
     useEffect(() => {
         dispatch(fetchSimilarMovie(detail.id))
-    }, [])
+        dispatch(getMovieTrailer(detail.id))
+    }, [detail])
+
+    useEffect(() => {
+        if(movieTrailer){
+            setTrailer(movieTrailer)
+        }
+    }, [movieTrailer])
     
     const valueStyle = {
         fontSize: 16,
@@ -78,17 +90,19 @@ export default function MovieDetail(props) {
 
     return (
         <Container>
+            <TrailerModal isShowTrailer={isShowTrailer} setIsShowTrailer={setIsShowTrailer} movieTrailer={trailer} />
             <div>
                 <Row 
                     justify='center'
                     align='bottom'
                     gutter={{ xs: 8, sm: 10, md: 10, lg: 10 }} 
                     style={{
-                        backgroundImage: `linear-gradient(0deg, rgba(0,0,0,0.95), rgba(0,0,0,0.6), rgba(0,0,0,0.1)), url(${baseImageURL}${poster_sizes[6]}${detail?.backdrop_path})`, 
+                        backgroundImage: `linear-gradient(0deg, rgba(0,0,0,0.95), rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url(${baseImageURL}${poster_sizes[6]}${detail?.backdrop_path})`, 
                         padding: 8, 
                         borderRadius: 10,
                         backgroundRepeat: 'no-repeat',
-                        backgroundSize: 'cover'
+                        backgroundSize: 'cover',
+                        backgroundPosition: "center"
                     }}
                 >
                     <Col lg={{ span: 4 }} style={{paddingTop: 64}}>
@@ -111,7 +125,7 @@ export default function MovieDetail(props) {
                                     values(detail?.original_title)
                                 }
                             </Descriptions.Item>
-                            <Descriptions.Item label={labels("Release Year")} span={2}>
+                            <Descriptions.Item label={labels("Release Year")}>
                                 {
                                     values(detail?.release_date.split('-')[0])
                                 }
@@ -121,14 +135,19 @@ export default function MovieDetail(props) {
                                     values(detail?.original_language)
                                 }
                             </Descriptions.Item>
-                            <Descriptions.Item label={labels("Popularity")}>
+                            <Descriptions.Item label={labels("Popularity")} >
                                 {
                                     values(detail?.popularity)
                                 }
                             </Descriptions.Item>
                             <Descriptions.Item label={labels("Rating")}>
                                 {
-                                    <Avatar>{detail?.vote_average}</Avatar>
+                                    <Avatar style={{backgroundColor: '#E50914', color: ''}}>{detail?.vote_average}</Avatar>
+                                }
+                            </Descriptions.Item>
+                            <Descriptions.Item label={labels("Trailer")} span={2}>
+                                {
+                                    <a onClick={() => setIsShowTrailer(true)}>Watch Trailer</a>
                                 }
                             </Descriptions.Item>
                             <Descriptions.Item label={labels("Overview")}>
